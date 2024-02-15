@@ -10,7 +10,7 @@ export const MaterialButton = styled(Button)(({ theme }) => ({
     borderRadius: "50pc",
     textDecoration: "none",
     border: "1px solid var(--color-accent-900)",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
 
     '&:hover': {
         backgroundColor: "var(--color-highlight)",
@@ -29,7 +29,7 @@ export const FloatActionButton = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "24px",
     textDecoration: "none",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-highlight)",
     },
@@ -41,7 +41,7 @@ export const FloatActionButtonV2 = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "24px",
     textDecoration: "none",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-secondary-700)",
     },
@@ -53,7 +53,7 @@ export const FloatActionButtonV3 = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "24px",
     textDecoration: "none",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-tretinary-700)",
     },
@@ -65,7 +65,7 @@ export const FloatActionButtonV4 = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "24px",
     textDecoration: "none",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-accent-400)",
     },
@@ -78,7 +78,7 @@ export const MaterialButtonTonal = styled(Button)(({ theme }) => ({
     boxShadow: "none",
     borderRadius: "50pc",
     border: "1px solid var(--color-accent-400)",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-accent-500)",
         boxShadow: "none",
@@ -91,7 +91,7 @@ export const MaterialButtonText = styled(Button)(({ theme }) => ({
     textTransform: "none",
     boxShadow: "none",
     borderRadius: "50pc",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     'MuiButtonBase-root': {
         textAlign: "left",
     },
@@ -107,7 +107,7 @@ export const MaterialButtonCard = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "16px",
     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.5)",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-accent-400)",
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
@@ -120,7 +120,7 @@ export const MaterialButtonError = styled(Button)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "50pc",
     border: "1px solid transparent",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         backgroundColor: "var(--color-danger)",
     },
@@ -132,7 +132,7 @@ export const MaterialButtonOutlined = styled(Button)(({ theme }) => ({
     border: "1px solid var(--color-accent-900)",
     textTransform: "none",
     borderRadius: "50pc",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
     '&:hover': {
         borderColor: "var(--color-highlight)",
     },
@@ -141,28 +141,28 @@ export const MaterialButtonOutlined = styled(Button)(({ theme }) => ({
 export const MaterialToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
     textTransform: "none",
     borderRadius: "50pc",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
 }));
 
 export const MaterialToggleButton = styled(ToggleButton)(({ theme }) => ({
     textTransform: "none",
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
 }));
 
 export const MaterialEditText = styled(TextField)(({ theme }) => ({
     '& label.Mui-focused': {
-        fontFamily: "Fredoka, sans-serif",
+        fontFamily: "Roboto, sans-serif",
         color: 'var(--color-accent-900)',
     },
     '& .MuiInput-underline:after': {
-        fontFamily: "Fredoka, sans-serif",
+        fontFamily: "Roboto, sans-serif",
         borderBottomColor: 'var(--color-accent-900)',
     },
     '& .MuiOutlinedInput-root': {
-        fontFamily: "Fredoka, sans-serif",
+        fontFamily: "Roboto, sans-serif",
         '&.Mui-focused fieldset': {
             borderColor: 'var(--color-accent-900)',
         },
     },
-    fontFamily: "Fredoka, sans-serif",
+    fontFamily: "Roboto, sans-serif",
 }));

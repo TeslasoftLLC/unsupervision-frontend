@@ -6,7 +6,7 @@ html, body {
     padding: 0;
     margin: 0;
     background-color: var(--color-accent-100);
-    font-family: "Fredoka", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
     font-variation-settings:
@@ -17,7 +17,7 @@ html, body {
 }
 
 h1, h2, h3, h4, h5, h6, p, div, a, button, input, textarea, select {
-    font-family: "Fredoka", sans-serif;
+    font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -171,7 +171,7 @@ p {
     width: fit-content;
     user-select: none;
     position: fixed;
-    top: 12px;
+    top: 16px;
     left: 16px;
     font-size: 24pt;
 }
@@ -305,7 +305,7 @@ p {
     align-items: center;
     justify-content: center;
     font-size: 12pt;
-    font-family: "Fredoka", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .mtrl-button-disabled {
@@ -417,7 +417,7 @@ p {
 }
 
 .error-message {
-    margin-left: 16px;
+    margin-left: 8px;
     font-size: 14pt;
 }
 
@@ -446,11 +446,11 @@ p {
 }
 
 .info-message {
-    margin-left: 16px;
+    margin-left: 8px;
 }
 
 .warning-message {
-    margin-left: 16px;
+    margin-left: 8px;
 }
 
 .ct {
@@ -529,12 +529,25 @@ p {
     color: #ffffff;
 }
 
-.file-item {
-    padding: 12px;
+.file-item-frame {
     margin: 8px;
+}
+
+.file-item-selected {
+    padding: 16px;
+    background-color: var(--color-accent-900);
+    color: #121212;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 12pt;
+}
+
+.file-item {
+    padding: 16px;
     border-radius: 16px;
     cursor: pointer;
     color: #ffffff;
+    font-size: 12pt;
 }
 
 .selected-item {
@@ -556,25 +569,18 @@ p {
     margin: 0;
 }
 
-.file-item-selected {
-    padding: 12px;
-    margin: 8px;
-    background-color: var(--color-accent-900);
-    color: #121212;
-    border-radius: 16px;
-    cursor: pointer;
-}
-
 .file-item:hover {
     background-color: var(--color-accent-500);
 }
 
 .update-selected {
+    font-size: 14pt;
     color: var(--color-accent-900);
     cursor: pointer;
 }
 
 .update-unselected {
+    font-size: 14pt;
     color: #ffffff;
     cursor: pointer;
 }
@@ -673,8 +679,19 @@ input:-webkit-autofill{
     outline: none;
 }
 
+.zero {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
 .full-width {
     width: calc(100% - 48px);
+}
+
+.full-width-2 {
+    width: 100%;
+    text-align: start;
 }
 
 .list-placeholder {
@@ -708,4 +725,10 @@ input:-webkit-autofill{
     flex-direction: row;
     justify-content: stretch;
     margin: 4px -16px;
+}
+
+.with-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

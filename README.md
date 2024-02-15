@@ -9,5 +9,5 @@ AI-generated updates. This is the part of Bachelor project.
 >
 > Unauthorized access is prohibited. For internal use only.
 >
-> (c) 2024 AndraxDev (Dmytro Ostapenko)
+> (c) 2024 AndraxDev (Dmytro Ostapenko). All rights reserved.
 > 

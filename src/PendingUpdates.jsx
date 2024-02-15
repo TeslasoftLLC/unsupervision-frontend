@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from "@mui/material";
 import ListPlaceholder from "./ListPlaceholder";
+import SecurityAlert from "./SecurityAlert";
 
 function PendingUpdates(props) {
 
@@ -42,8 +43,18 @@ function PendingUpdates(props) {
         setLoading(true)
         if (updateId !== -1) {
             fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetPendingUpdateById.php?id=" + updateId)
-            .then(res => res.json())
+            .then(res => {
+                return res.json()
+            }).catch(e => {
+                setUpdateId(-2)
+                setLoading(false)
+            })
             .then(data => {
+                if (data === null || data === undefined || data.version === undefined) {
+                    setUpdateId(-2)
+                    setLoading(false)
+                    return
+                }
                 setLoading(false)
                 setUpdateInfo(data)
             });
@@ -111,49 +122,51 @@ function PendingUpdates(props) {
                         </>}
                     </>
                     : <>
-                        <h2 className={"tab-title"}>Update ID {updateId}</h2>
-                        {updateInfo === null ? null : <div className={"update-card-info"}>
-                            <div className={"update-actions"}>
-                                <button className={"mtrl-button-tonal"} onClick={() => {
-                                    setUpdateId(-1)
-                                    setUpdateInfo(null)
-                                    setRefresh(true)
-                                }}><span
-                                    className="material-symbols-outlined-btn material-symbols-outlined">arrow_back_ios</span>Go
-                                    back
-                                </button>
-                                &nbsp;&nbsp;
-                                <button className={"mtrl-button-tonal-success mtrl-button-tonal"} onClick={applyUpdate}>
+                        {updateId < -1 ? <SecurityAlert/> : <>
+                            <h2 className={"tab-title"}>Update ID {updateId}</h2>
+                            {updateInfo === null ? null : <div className={"update-card-info"}>
+                                <div className={"update-actions"}>
+                                    <button className={"mtrl-button-tonal"} onClick={() => {
+                                        setUpdateId(-1)
+                                        setUpdateInfo(null)
+                                        setRefresh(true)
+                                    }}><span
+                                        className="material-symbols-outlined-btn material-symbols-outlined">arrow_back_ios</span>Go
+                                        back
+                                    </button>
+                                    &nbsp;&nbsp;
+                                    <button className={"mtrl-button-tonal-success mtrl-button-tonal"} onClick={applyUpdate}>
                                     <span
                                         className="material-symbols-outlined-btn material-symbols-outlined">done</span>&nbsp;&nbsp;Apply
-                                    this update
-                                </button>
-                                &nbsp;&nbsp;
-                                <button className={"mtrl-button-tonal-error mtrl-button-tonal"} onClick={confirmDeletion}>
+                                        this update
+                                    </button>
+                                    &nbsp;&nbsp;
+                                    <button className={"mtrl-button-tonal-error mtrl-button-tonal"} onClick={confirmDeletion}>
                                     <span
                                         className="material-symbols-outlined-btn material-symbols-outlined">delete</span>&nbsp;&nbsp;Delete update
-                                </button>
-                            </div>
-                            <br/><br/>
-                            <p className={"text"}>Version: {updateInfo.version}</p>
-                            <br/>
-                            <p className={"text"}>Timestamp: {updateInfo.timestamp} ({new Date(parseInt(updateInfo.timestamp) * 1000).toLocaleString()})</p>
-                            <br/>
-                            <p className={"text"}>Files:</p>
-                            <div className={"file-info"}>
-                                {
-                                    updateInfo.changeMap.map((item, index) => (
-                                        <div className={"update-file"} key={index}>
-                                            <p className={"text"}>File Name: {item.fileName}</p>
-                                            <p className={"text"}>Path: {item.path}</p>
-                                            <p className={"text"}>Update method: {item.updateMethod}</p>
-                                            <p className={"text"}>SHA256: {item.sha256}</p>
-                                            <br/>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>}
+                                    </button>
+                                </div>
+                                <br/><br/>
+                                <p className={"text"}>Version: {updateInfo.version}</p>
+                                <br/>
+                                <p className={"text"}>Timestamp: {updateInfo.timestamp} ({new Date(parseInt(updateInfo.timestamp) * 1000).toLocaleString()})</p>
+                                <br/>
+                                <p className={"text"}>Files:</p>
+                                <div className={"file-info"}>
+                                    {
+                                        updateInfo.changeMap.map((item, index) => (
+                                            <div className={"update-file"} key={index}>
+                                                <p className={"text"}>File Name: {item.fileName}</p>
+                                                <p className={"text"}>Path: {item.path}</p>
+                                                <p className={"text"}>Update method: {item.updateMethod}</p>
+                                                <p className={"text"}>SHA256: {item.sha256}</p>
+                                                <br/>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>}
+                        </>}
                     </>
             }
 

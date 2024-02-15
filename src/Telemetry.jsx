@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import TelemetryElement from "./TelemetryElement";
 import {CircularProgress} from "@mui/material";
+import ListPlaceholder from "./ListPlaceholder";
 
 function Telemetry(props) {
 
@@ -62,10 +63,12 @@ function Telemetry(props) {
 
             {data === null ? null : <>
                 {
-                    data.map((item, index) => (
-                        <TelemetryElement key={index} timestamp={item.timestamp} messageType={item.type}
-                                          deviceId={item.deviceId} message={item.message}/>
-                    ))
+                    <>
+                        {data.length === 0 ? <ListPlaceholder text={"No data"}/> : data.map((item, index) => (
+                            <TelemetryElement key={index} timestamp={item.timestamp} messageType={item.type}
+                                              deviceId={item.deviceId} message={item.message}/>
+                        ))}
+                    </>
                 }
             </>}
 

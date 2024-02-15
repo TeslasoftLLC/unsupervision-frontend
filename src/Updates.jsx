@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {CircularProgress} from "@mui/material";
 import ListPlaceholder from "./ListPlaceholder";
+import SecurityAlert from "./SecurityAlert";
 
 function Updates(props) {
 
@@ -38,11 +39,25 @@ function Updates(props) {
     }, [refresh]);
 
     useEffect(() => {
+        if (deletionDialog && updateId.toString() === "0") setDeletionDialog(false)
+    }, [deletionDialog]);
+
+    useEffect(() => {
         if (updateId !== -1) {
             setLoading(true)
             fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdateById.php?id=" + updateId)
-                .then(res => res.json())
+                .then(res => {
+                    return res.json()
+                }).catch(e => {
+                    setUpdateId(-2)
+                    setLoading(false)
+                })
                 .then(data => {
+                    if (data === null || data === undefined || data.version === undefined) {
+                        setUpdateId(-2)
+                        setLoading(false)
+                        return
+                    }
                     setLoading(false)
                     setUpdateInfo(data)
                 });
@@ -96,51 +111,53 @@ function Updates(props) {
                         </>}
                     </>
                     : <>
-                        <h2 className={"tab-title"}>Update ID {updateId}</h2>
-                        {updateInfo === null ? null : <div className={"update-card-info"}>
-                        <div className={"update-actions"}>
-                                <button className={"mtrl-button-tonal"} onClick={() => {
-                                    setUpdateId(-1)
-                                    setUpdateInfo(null)
-                                    setRefresh(true)
-                                }}><span
-                                    className="material-symbols-outlined-btn material-symbols-outlined">arrow_back_ios</span>Go
-                                    back
-                                </button>
-                                {updateId.toString() === "0" ? null : <>
-                                    &nbsp;&nbsp;
-                                    <button className={"mtrl-button-tonal-error mtrl-button-tonal"}
-                                            onClick={confirmDeletion}>
+                        {updateId < -1 ? <SecurityAlert/> : <>
+                            <h2 className={"tab-title"}>Update ID {updateId}</h2>
+                            {updateInfo === null ? null : <div className={"update-card-info"}>
+                                <div className={"update-actions"}>
+                                    <button className={"mtrl-button-tonal"} onClick={() => {
+                                        setUpdateId(-1)
+                                        setUpdateInfo(null)
+                                        setRefresh(true)
+                                    }}><span
+                                        className="material-symbols-outlined-btn material-symbols-outlined">arrow_back_ios</span>Go
+                                        back
+                                    </button>
+                                    {updateId.toString() === "0" ? null : <>
+                                        &nbsp;&nbsp;
+                                        <button className={"mtrl-button-tonal-error mtrl-button-tonal"}
+                                                onClick={confirmDeletion}>
                                     <span
                                         className="material-symbols-outlined-btn material-symbols-outlined">delete</span>&nbsp;&nbsp;Delete
-                                        update
-                                    </button>
-                                </>}
-                            </div>
-                            <br/>
-                            {updateId.toString() === "0" ? <div className={"error-card"}>
-                                <span className={"material-symbols-outlined"}>error</span><span className={"error-message"}>This is the source update. It cannot be deleted nor changed. Source update is the update that is used to create the app. It's the first app version.</span>
-                            </div> : null}
-                            <br/>
-                            <p className={"text"}>Version: {updateInfo.version}</p>
-                            <br/>
-                            <p className={"text"}>Timestamp: {updateInfo.timestamp} ({new Date(parseInt(updateInfo.timestamp) * 1000).toLocaleString()})</p>
-                            <br/>
-                            <p className={"text"}>Files:</p>
-                            <div className={"file-info"}>
-                                {
-                                    updateInfo.changeMap.map((item, index) => (
-                                        <div className={"update-file"} key={index}>
-                                            <p className={"text"}>File Name: {item.fileName}</p>
-                                            <p className={"text"}>Path: {item.path}</p>
-                                            <p className={"text"}>Update method: {item.updateMethod}</p>
-                                            <p className={"text"}>SHA256: {item.sha256}</p>
-                                            <br/>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                        </div>}
+                                            update
+                                        </button>
+                                    </>}
+                                </div>
+                                <br/>
+                                {updateId.toString() === "0" ? <div className={"error-card"}>
+                                    <span className={"material-symbols-outlined"}>error</span><span className={"error-message"}>This is the source update. It cannot be deleted nor changed. Source update is the update that is used to create the app. It's the first app version.</span>
+                                </div> : null}
+                                <br/>
+                                <p className={"text"}>Version: {updateInfo.version}</p>
+                                <br/>
+                                <p className={"text"}>Timestamp: {updateInfo.timestamp} ({new Date(parseInt(updateInfo.timestamp) * 1000).toLocaleString()})</p>
+                                <br/>
+                                <p className={"text"}>Files:</p>
+                                <div className={"file-info"}>
+                                    {
+                                        updateInfo.changeMap.map((item, index) => (
+                                            <div className={"update-file"} key={index}>
+                                                <p className={"text"}>File Name: {item.fileName}</p>
+                                                <p className={"text"}>Path: {item.path}</p>
+                                                <p className={"text"}>Update method: {item.updateMethod}</p>
+                                                <p className={"text"}>SHA256: {item.sha256}</p>
+                                                <br/>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>}
+                        </>}
                     </>
             }
 

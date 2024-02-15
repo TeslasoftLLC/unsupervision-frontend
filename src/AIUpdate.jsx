@@ -43,6 +43,11 @@ function AiUpdate(props) {
     }, []);
 
     useEffect(() => {
+        setFilePreview(null)
+        document.getElementById("filePreviewT").innerHTML = ""
+    }, [selectedFile, selectedUpdate]);
+
+    useEffect(() => {
         if (refresh) {
             setRefresh(false)
             fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdates.php")
@@ -120,7 +125,7 @@ function AiUpdate(props) {
         }
 
         if (errorFileNotSelected) {
-            errorText += " - File is not selected. Don't forget to download a file before generating update.\n"
+            errorText += " - File is not selected or it hasn't downloaded yet. Don't forget to download a file before generating update.\n"
         }
 
         if (!errorMissingFile && !errorMissingContext && !errorFileNotSelected) {
@@ -173,7 +178,6 @@ function AiUpdate(props) {
     }
 
     let generateUpdate = async () => {
-
         let parsedFile = filePreview.textContent.replaceAll("\n", "")
         let parsedFile2 = parsedFile.replaceAll("\"", "\\\"")
 
@@ -257,17 +261,18 @@ function AiUpdate(props) {
                 <h3 className={"form-title"}>Select a file to patch</h3>
                 <div className={selectedUpdate === null ? "selected-item-error" : "selected-item"}>
                     {selectedUpdate !== null ?
-                        <h4 className={"selected-item-text"}>Selected file: {selectedFile} at {selectedFilePath} in
+                        <h4 className={"with-icon selected-item-text"}><span className={"material-symbols-outlined"}>verified</span>&nbsp;&nbsp;&nbsp;Selected file: {selectedFile} at {selectedFilePath} in
                             update
                             ID {selectedUpdate}</h4> :
-                        <h4 className={"selected-item-text"}>No file selected</h4>}
+                        <h4 className={"with-icon selected-item-text"}><span className={"material-symbols-outlined"}>error</span>&nbsp;&nbsp;&nbsp;No
+                            file selected.</h4>}
                 </div>
                 {upd !== null && data !== null && data.length === upd.updates.length ?
                     data.map((item, index) => (
                         <div className={selectedUpdate === item.updateId ? "update-selector-active" : "update-selector"}
-                             key={index}>
-                            <h4 className={"update-unselected form-subtitle"} id={index.toString() + "_t"}
-                                onClick={() => {
+                             key={index.toString() + "_t"}>
+                            <div>
+                                <button className={"clickable-frame zero full-width-2"} onClick={() => {
                                     let el = document.getElementById(index.toString() + "_upd")
                                     let el2 = document.getElementById(index.toString() + "_t")
                                     if (el.style.display === "none") {
@@ -279,22 +284,25 @@ function AiUpdate(props) {
                                         el2.classList.add("update-unselected")
                                         el2.classList.remove("update-selected")
                                     }
-                                }}>Update ID {item.updateId}</h4>
-                            <div id={index.toString() + "_upd"} style={{
-                                display: "none"
-                            }}>
+                                }}>
+                                    <h4 className={"with-icon update-unselected form-subtitle"} id={index.toString() + "_t"}><span className={"material-symbols-outlined"}>folder</span>&nbsp;&nbsp;&nbsp;Update ID {item.updateId}</h4>
+                                </button>
+                            </div>
+                            <div id={index.toString() + "_upd"} style={{display: "none"}}>
                                 {
                                     item.changeMap.map((file, index2) => (
-                                        <div
-                                            className={file.fileName.replace("/", "") === selectedFile && item.updateId === selectedUpdate ? "file-item-selected" : "file-item"}
-                                            onClick={
+                                        <div className={"file-item-frame"} key={index2.toString() + "_f"}>
+                                            <button className={"clickable-frame zero full-width-2"} onClick={
                                                 () => {
                                                     setSelectedUpdate(item.updateId)
                                                     setSelectedFile(file.fileName.replace("/", ""))
                                                     setSelectedFilePath(file.path)
                                                 }
                                             }>
-                                            <p key={index2}>{file.fileName.replace("/", "")}</p>
+                                                <div className={file.fileName.replace("/", "") === selectedFile && item.updateId === selectedUpdate ? "file-item-selected" : "file-item"}>
+                                                    <p className={"with-icon"}><span className={"material-symbols-outlined"}>description</span>&nbsp;&nbsp;&nbsp;{file.fileName.replace("/", "")}</p>
+                                                </div>
+                                            </button>
                                         </div>
                                     ))
                                 }
