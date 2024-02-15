@@ -1,0 +1,33 @@
+.btn-id5 {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn-bg {
+    border-radius: 16px;
+    background-color: rgba(48, 103, 230, 0.2);
+    transition: 0.3s;
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    font-size: 14pt;
+}
+
+.btn-bg:hover {
+    background-color: rgba(48, 103, 230, 0.5);
+    transition: 0.3s;
+}
+
+.icon-x {
+    width: 48px;
+    height: 48px;
+}
+
+.text-x {
+    color: #fff;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+}

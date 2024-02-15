@@ -1,0 +1,37 @@
+:root {
+    --color-accent-100: #0a0a0a;
+    --color-accent-200: #151515; /* bg-secondary */
+    --color-accent-300: #222320;
+    --color-accent-400: #2d2f2a; /* tone-secondary*/
+    --color-accent-450: #3a3c36;
+    --color-accent-500: #454d3b;
+    --color-accent-600: #566a46;
+    --color-accent-700: #71974d;
+    --color-accent-900: #b7ff87;
+
+    --color-secondary-600: #005A0D;
+    --color-secondary-700: #12751E;
+    --color-secondary-900: #E8F5E9;
+
+    --color-tretinary-600: #5E2E63;
+    --color-tretinary-700: #78457D;
+    --color-tretinary-900: #FFCFFA;
+
+    /*--color-accent-100: #1B2616; !* very dark desaturated green *!*/
+    /*--color-accent-150: #243722; !* very dark desaturated green *!*/
+    /*--color-accent-200: #2D4730; !* very dark desaturated green *!*/
+    /*--color-accent-300: #3A5C40; !* dark moderate green *!*/
+    /*--color-accent-400: #487154; !* dark moderate green *!*/
+    /*--color-accent-500: #699F77; !* moderate green *!*/
+    /*--color-accent-900: #DFFCE5; !* very light green *!*/
+
+    --color-highlight: #ffffff;
+
+    --color-danger: #db4437;
+    --color-danger-tonal: rgba(219, 68, 55, 0.3);
+    --color-danger-highlight: rgba(219, 68, 55, 0.6);
+
+    --color-text: rgba(255, 255, 255, 0.7);
+    --color-text-title: #ffffff;
+    --color-progress: #cde2ff;
+}
