@@ -54,7 +54,7 @@ function AIUpdate(props) {
     useEffect(() => {
         if (refresh) {
             setRefresh(false)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdates.php")
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdates")
             .then(res => res.json())
             .then(d => {
                 setUpd(d)
@@ -63,7 +63,7 @@ function AIUpdate(props) {
     }, [refresh]);
 
     async function getUpdate(id) {
-        const response = await fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdateById.php?id=" + id)
+        const response = await fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdateById?id=" + id)
         return await response.json();
     }
 
@@ -87,7 +87,7 @@ function AIUpdate(props) {
 
     let downloadFile = (updateId, path, file) => {
         setLoading(true)
-        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile.php?id=" + updateId + "&path=" + path + "&file=" + file)
+        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile?id=" + updateId + "&path=" + path + "&file=" + file)
         .then(res => {
             return res.text()
         }).then(data => {
@@ -231,7 +231,7 @@ function AIUpdate(props) {
 
         formData.append("u", encodedReq)
 
-        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GenerateFixedUpdate.php", {
+        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GenerateFixedUpdate", {
             method: 'POST',
             body: formData
         })
@@ -342,7 +342,7 @@ function AIUpdate(props) {
                         disabled={true}
                         style={{
                             fontFamily: '"Fira code", "Fira Mono", monospace',
-                            fontSize: 16,
+                            fontSize: "14pt",
                             color: "#ffffff",
                             border: "none",
                             padding: 0,

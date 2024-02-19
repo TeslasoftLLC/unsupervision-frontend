@@ -45,7 +45,7 @@ function PendingUpdates(props) {
             setCode("")
         } else {
             setLoading(true)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile.php?id=" + updateId + "-fixed" + "&path=" + path + "&file=" + fileId)
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile?id=" + updateId + "-fixed" + "&path=" + path + "&file=" + fileId)
             .then(res => res.text())
             .then(data => {
                 setLoading(false)
@@ -70,7 +70,7 @@ function PendingUpdates(props) {
             setRefresh(false)
 
             setLoading(true)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetPendingUpdates.php")
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetPendingUpdates")
             .then(res => res.json())
             .then(data => {
                 setLoading(false)
@@ -82,7 +82,7 @@ function PendingUpdates(props) {
     useEffect(() => {
         setLoading(true)
         if (updateId !== -1) {
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetPendingUpdateById.php?id=" + updateId)
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetPendingUpdateById?id=" + updateId)
             .then(res => {
                 return res.json()
             }).catch(e => {
@@ -103,7 +103,7 @@ function PendingUpdates(props) {
 
     let applyUpdate = () => {
         setLoading(true)
-        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/ApplyFix.php?id=" + updateId)
+        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/ApplyFix?id=" + updateId)
         .then(res => res.json())
         .then(data => {
             setLoading(false)
@@ -119,9 +119,13 @@ function PendingUpdates(props) {
         setDeletionDialog(true)
     }
 
+    let confirmDeletionFile = () => {
+        setDeletionDialogFile(true)
+    }
+
     let deleteUpdate = () => {
         setLoading(true)
-        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/DeleteFix.php?id=" + updateId)
+        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/DeleteFix?id=" + updateId)
         .then(res => res.json())
         .then(data => {
             setLoading(false)
@@ -139,7 +143,7 @@ function PendingUpdates(props) {
                 updateId === -1 ?
                     <>
                         <h2 className={"tab-title"}>Pending updates</h2>
-                        {data === null ? null : <>
+                        {data === null || data === undefined ? <ListPlaceholder text={"No updates found."}/> : <>
                             {
                                 <>
                                     {
@@ -278,7 +282,7 @@ function PendingUpdates(props) {
                                                 disabled={true}
                                                 style={{
                                                     fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    fontSize: 16,
+                                                    fontSize: "14pt",
                                                     color: "#ffffff",
                                                     border: "none",
                                                     padding: 0,

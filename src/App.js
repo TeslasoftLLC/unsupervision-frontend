@@ -15,6 +15,7 @@ function App() {
     let [authState, setAuthState] = useState(false)
     let [loading, setLoading] = useState(false)
     let [error, setError] = useState("")
+    let [username, setUsername] = useState("")
 
     useEffect(() => {
         verifyToken()
@@ -34,7 +35,7 @@ function App() {
 
             let xhr = new XMLHttpRequest();
 
-            xhr.open('POST', 'https://unsupervision.teslasoft.org/auth/users/VerifyToken.php', true);
+            xhr.open('POST', 'https://unsupervision.teslasoft.org/auth/users/VerifyToken', true);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
@@ -42,11 +43,13 @@ function App() {
                     if (xhr.status === 200) {
                         let response = JSON.parse(xhr.responseText);
 
-                        console.log(response);
-
                         if (response.code === 200) {
                             setAuthState(true);
                             setLoading(false)
+
+                            let jwtParts = localStorage.getItem("token").split(".");
+                            let jwtDecoded = JSON.parse(atob(jwtParts[1]));
+                            setUsername(jwtDecoded.username)
                         } else {
                             localStorage.removeItem("token");
                             setAuthState(false);
@@ -57,7 +60,6 @@ function App() {
                             setError(response.message);
                         }
                     } else {
-                        // Handle the error
                         console.error('Error:', xhr.status, xhr.statusText);
 
                         setLoading(false)
@@ -91,6 +93,7 @@ function App() {
                             className={"logo-2"}>Supervision</span></h2>
 
                         <div className={"ab-right"}>
+                            <span className={"username"}>Logged in as <b>{username}</b></span>
                             <button className={"mtrl-button-tonal-error mtrl-button-tonal"}
                                     onClick={logout}>
                                     <span

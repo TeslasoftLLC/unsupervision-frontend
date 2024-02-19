@@ -25,7 +25,7 @@ function Telemetry(props) {
         if (refresh) {
             setLoading(true)
             setRefresh(false)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/GetTelemetry.php")
+            fetch("https://unsupervision.teslasoft.org/unsupervision/GetTelemetry")
             .then(res => res.json())
             .then(data => {
                 setLoading(false)

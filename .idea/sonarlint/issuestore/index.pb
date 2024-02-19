@@ -79,3 +79,14 @@ E
 src/PendingUpdates.js,1\d\1d1b9e134b2295f685d681220a98a1956790e79a
 <
 src/About.js,0\5\05de931857e07f4ffcc8f326f08cf229c5ae24c8
+@
+src/Telemetry.js,5\c\5cb88670abbee62a97482dc3973ca2a792e1c5b4
+G
+src/TelemetryElement.js,a\5\a5635ce7ba3e0fefc92c9d66cdd251f9e8ef9861
+:
+
+tests.json,0\9\09e9606f9c8dece5c0cd024a7fc5a628ba133bbf
+<
+src/Tests.js,3\a\3a1379ee7a0c0f8dc8b18baf0db8827a95a906bf
+A
+src/ErrorTests.js,3\5\356572448a5a0a77cfff10389d28ff82e5cfa53f

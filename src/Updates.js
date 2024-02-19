@@ -44,7 +44,7 @@ function Updates(props) {
             setCode("")
         } else {
             setLoading(true)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile.php?id=" + updateId + "&path=" + path + "&file=" + fileId)
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetFile?id=" + updateId + "&path=" + path + "&file=" + fileId)
             .then(res => res.text())
             .then(data => {
                 setLoading(false)
@@ -68,7 +68,7 @@ function Updates(props) {
         if (refresh) {
             setLoading(true)
             setRefresh(false)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdates.php")
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdates")
             .then(res => res.json())
             .then(data => {
                 setLoading(false)
@@ -84,7 +84,7 @@ function Updates(props) {
     useEffect(() => {
         if (updateId !== -1) {
             setLoading(true)
-            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdateById.php?id=" + updateId)
+            fetch("https://unsupervision.teslasoft.org/unsupervision/updates/GetUpdateById?id=" + updateId)
                 .then(res => {
                     return res.json()
                 }).catch(e => {
@@ -113,7 +113,7 @@ function Updates(props) {
 
     let deleteUpdate = () => {
         setLoading(true)
-        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/DeleteUpdate.php?id=" + updateId)
+        fetch("https://unsupervision.teslasoft.org/unsupervision/updates/DeleteUpdate?id=" + updateId)
         .then(res => res.json())
         .then(data => {
             setLoading(false)
@@ -131,7 +131,7 @@ function Updates(props) {
                 updateId === -1 ?
                     <>
                         <h2 className={"tab-title"}>Updates</h2>
-                        {data === null ? null : <>
+                        {data === null || data === undefined ? <ListPlaceholder text={"No updates found."}/> : <>
                             {
                                 <>
                                     {
@@ -270,7 +270,7 @@ function Updates(props) {
                                                 disabled={true}
                                                 style={{
                                                     fontFamily: '"Fira code", "Fira Mono", monospace',
-                                                    fontSize: 16,
+                                                    fontSize: "14pt",
                                                     color: "#ffffff",
                                                     border: "none",
                                                     padding: 0,
