@@ -2,8 +2,13 @@ import React, {useEffect} from 'react';
 import {CircularProgress} from "@mui/material";
 import Telemetry from "./Telemetry";
 import OpenAI from "openai";
+import Editor from "react-simple-code-editor";
+import {highlight, languages} from "prismjs";
+import { html_beautify } from 'js-beautify';
 
-function AiUpdate(props) {
+const options = { indent_size: 4, space_in_empty_paren: true }
+
+function AIUpdate(props) {
     let [data, setData] = React.useState([]);
 
     let [upd, setUpd] = React.useState(null);
@@ -44,7 +49,6 @@ function AiUpdate(props) {
 
     useEffect(() => {
         setFilePreview(null)
-        document.getElementById("filePreviewT").innerHTML = ""
     }, [selectedFile, selectedUpdate]);
 
     useEffect(() => {
@@ -87,16 +91,14 @@ function AiUpdate(props) {
         .then(res => {
             return res.text()
         }).then(data => {
-            let textNode = document.createTextNode(data)
-            setFilePreview(textNode)
+            // let textNode = document.createTextNode(data)
+            setFilePreview(html_beautify(data, options))
             setLoading(false)
         });
     }
 
     useEffect(() => {
         if (filePreview !== null) {
-            document.getElementById("filePreviewT").innerHTML = ""
-            document.getElementById("filePreviewT").appendChild(filePreview)
             setErrorFileNotSelected(false)
         }
     }, [filePreview])
@@ -178,7 +180,7 @@ function AiUpdate(props) {
     }
 
     let generateUpdate = async () => {
-        let parsedFile = filePreview.textContent.replaceAll("\n", "")
+        let parsedFile = filePreview.replaceAll("\n", "")
         let parsedFile2 = parsedFile.replaceAll("\"", "\\\"")
 
         let parsedPrompt = prompt.replace("{file}", parsedFile2)
@@ -331,7 +333,34 @@ function AiUpdate(props) {
                     file for patch
                 </button>
                 <br/>
-                <textarea className={"mtrl-textarea-code mtrl-textarea"} readOnly={true} id={"filePreviewT"}></textarea>
+                <div className={"code-editor"}>
+                    <Editor
+                        value={filePreview === null ? "-- Downloaded file contents will appear here --" : filePreview}
+                        onValueChange={code => setFilePreview(code)}
+                        highlight={code => highlight(code, languages.html, 'html')}
+                        padding={10}
+                        disabled={true}
+                        style={{
+                            fontFamily: '"Fira code", "Fira Mono", monospace',
+                            fontSize: 16,
+                            color: "#ffffff",
+                            border: "none",
+                            padding: 0,
+                            margin: 0,
+                            '&:hover': {
+                                border: "none",
+                            },
+                            '&:focus': {
+                                border: "none",
+                            },
+                            '&:after': {
+                                border: "none",
+                            },
+                            maxHeight: "500px",
+                            overflow: "auto"
+                        }}
+                    />
+                </div>
             </div>
 
             {loading ? <div className={"dialog"}>
@@ -349,7 +378,7 @@ function AiUpdate(props) {
                 <h3 className={"form-title"}>Additional info</h3>
                 <textarea className={"mtrl-textarea"}
                           onChange={(e) => {
-                                setContext(e.target.value)
+                              setContext(e.target.value)
                           }}
                           placeholder={"Context"} defaultValue={context}></textarea>
                 <br/>
@@ -393,4 +422,4 @@ function AiUpdate(props) {
     );
 }
 
-export default AiUpdate;
+export default AIUpdate;

@@ -43,6 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .material-symbols-outlined {
+    user-select: none;
     font-size: 24pt;
     font-variation-settings:
        'FILL' 0,
@@ -52,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .material-symbols-outlined-btn {
+    user-select: none;
     font-size: 14pt;
     display: flex;
     align-items: center;
@@ -80,6 +82,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 8px solid transparent;
     background-clip: padding-box;
     cursor: n-resize;
+    min-height: 100px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -268,6 +271,20 @@ p {
     font-size: 14pt;
 }
 
+.file-card {
+    background-color: var(--color-accent-300);
+    border-radius: 16px;
+    padding: 20px 16px;
+    margin: 0;
+    user-select: none;
+    text-align: start;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14pt;
+    width: 100%;
+}
+
 .update-card-content {
     display: flex;
     flex-direction: row;
@@ -279,6 +296,10 @@ p {
     background-color: var(--color-accent-300);
 }
 
+.file-card:hover {
+    background-color: var(--color-accent-400);
+}
+
 .update-card-info {
     background-color: var(--color-accent-200);
     border-radius: 24px;
@@ -287,10 +308,6 @@ p {
     user-select: text;
     text-align: start;
     font-family: monospace;
-}
-
-.file-info {
-    margin-left: 16px;
 }
 
 .mtrl-button-tonal {
@@ -400,7 +417,7 @@ p {
     padding: 16px;
     background-color: #2c1a1a;
     border-radius: 16px;
-    color: #db4437;
+    color: #ff9589;
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -410,26 +427,17 @@ p {
     padding: 16px;
     background-color: #372424;
     border-radius: 16px;
-    color: #db4437;
+    color: #ff9589;
     display: flex;
     align-items: center;
     font-size: 14px;
-}
-
-.error-message {
-    margin-left: 8px;
-    font-size: 14pt;
-}
-
-.error-message-v2 {
-    margin: 0;
 }
 
 .info-card {
     padding: 16px;
     background-color: #29293f;
     border-radius: 16px;
-    color: #3e8cff;
+    color: #b1d1ff;
     display: flex;
     align-items: center;
     font-size: 14px;
@@ -439,18 +447,34 @@ p {
     padding: 16px;
     background-color: #2c2c1a;
     border-radius: 16px;
-    color: #ffcc00;
+    color: #ffec8a;
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
+.error-message {
+    margin-left: 16px;
+    font-size: 14pt;
+    text-align: start;
+}
+
+.error-message-v2 {
+    margin: 0;
+    font-size: 14pt;
+    text-align: start;
+}
+
 .info-message {
-    margin-left: 8px;
+    margin-left: 16px;
+    font-size: 14pt;
+    text-align: start;
 }
 
 .warning-message {
-    margin-left: 8px;
+    margin-left: 16px;
+    font-size: 14pt;
+    text-align: start;
 }
 
 .ct {
@@ -731,4 +755,19 @@ input:-webkit-autofill{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.code-editor {
+    background-color: #000000;
+    border-radius: 16px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-normalize-v32 {
+    width: calc(100% - 32px);
 }

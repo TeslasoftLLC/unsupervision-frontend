@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Updates from "./Updates";
 import Telemetry from "./Telemetry";
 import PendingUpdates from "./PendingUpdates";
-import AiUpdate from "./AIUpdate";
+import AIUpdate from "./AIUpdate";
 import Auth from "./Auth";
 import {CircularProgress} from "@mui/material";
 import Tests from "./Tests";
@@ -142,7 +142,7 @@ function App() {
                             <PendingUpdates/> :
                             <>{selectedItem === 3 ?
                                 <Telemetry/> :
-                                <> {selectedItem === 4 ? <AiUpdate/> :
+                                <> {selectedItem === 4 ? <AIUpdate/> :
                                     <>{selectedItem === 5 ? <Tests/> :
                                         <>{selectedItem === 6 ? <About/> :
                                             <UndefinedPage/>}
