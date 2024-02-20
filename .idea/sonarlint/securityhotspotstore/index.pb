@@ -55,20 +55,8 @@ E
 :
 
 src/App.js,1\e\1e43fa63aecd2127be034b3fb9d4caa172275714
-8
-.babelrc,b\c\bcac7464521b8c19a2372c739f6dc9e9ab7dfc80
-?
-babel.config.js,7\7\775bd43a34022cef87b6af825cbd551f29473f73
-C
-src/babel.config.js,d\7\d7d09eceaed581b7522ded4c20445d264b2b4409
-A
-webpack.config.js,d\5\d5595158cc48f9bf3e51b06f6e6805a8fd2d6262
-F
-public/babel.config.js,3\3\3303215b3583346659fa263cd59c0aeafb1d6806
 A
 package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
-G
-public/themes/prism.css,8\b\8b7c209f3a880ee8e42b34df3702895c2f50eba2
 I
 src/MaterialComponents.js,e\6\e678a88a1ab1b82e2be271b243d7f02ffefcf7ae
 ?

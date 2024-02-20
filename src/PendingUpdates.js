@@ -180,6 +180,12 @@ function PendingUpdates(props) {
                                                 className="material-symbols-outlined-btn material-symbols-outlined">arrow_back_ios</span>Go
                                                 back
                                             </button>
+                                            &nbsp;&nbsp;
+                                            <button className={"mtrl-button-tonal-success mtrl-button-tonal"} onClick={applyUpdate}>
+                                            <span
+                                                className="material-symbols-outlined-btn material-symbols-outlined">done</span>&nbsp;&nbsp;Apply
+                                                        this update
+                                            </button>
                                             {updateId.toString() === "0" ? null : <>
                                                 &nbsp;&nbsp;
                                                 <button className={"mtrl-button-tonal-error mtrl-button-tonal"}

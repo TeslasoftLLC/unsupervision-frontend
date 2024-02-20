@@ -1,0 +1,7 @@
+
+wjavascript:S3776"TRefactor this function to reduce its Cognitive Complexity from 36 to the 15 allowed.(¤ú³È8×œğ˜Ü1
+kjavascript:S1481 "CRemove the declaration of the unused 'deletionDialogFile' variable.(ÜëÄÅüÿÿÿÿ8Øœğ˜Ü1
+hjavascript:S1854 "@Remove this useless assignment to variable "deletionDialogFile".(ÜëÄÅüÿÿÿÿ8Øœğ˜Ü1
+gjavascript:S1481n"DRemove the declaration of the unused 'confirmDeletionFile' variable.(ÚÜÎ†8Ùœğ˜Ü1
+djavascript:S1854n"ARemove this useless assignment to variable "confirmDeletionFile".(ÚÜÎ†8Ùœğ˜Ü1
+Ujavascript:S6749È",A fragment with only one child is redundant.(™åÑğüÿÿÿÿ8àœğ˜Ü1
